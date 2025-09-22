@@ -8,7 +8,7 @@ import toyproject.demo.Entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
     // 로그인
-    boolean findByNicknameAndPassword(String nickname, String password);
+    boolean existsByNicknameAndPassword(String nickname, String password);
 
     // 닉네임 중복 확인
     boolean existsByNickname(String nickname);

@@ -14,7 +14,7 @@ public class UserService {
     // 로그인
     public boolean login(String nickname, String password) {
         try {
-            return userRepository.findByNicknameAndPassword(nickname, password);
+            return userRepository.existsByNicknameAndPassword(nickname, password);
         } catch (Exception e) {
             return false;
         }
