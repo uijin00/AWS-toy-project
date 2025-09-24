@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapa Music</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+        .bg-RapaMusic-green { background-color: #1ed760; }
+        .text-RapaMusic-green { color: #1ed760; }
+        .music-item { cursor: pointer; }
+        .music-item:hover { background-color: #282828; }
+        .music-item.active { background-color: #282828; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+<div class="w-full max-w-xl mx-auto p-6 rounded-xl shadow-lg bg-black bg-opacity-30">
+    <h1 class="text-3xl font-bold mb-6 text-center">Rapa Music</h1>
+    <a id="logout-btn" href="#" class="absolute top-4 right-4 text-gray-400 hover:text-white">Logout</a>
+    <div class="mb-6 p-4 rounded-lg bg-gray-900 bg-opacity-50">
+        <p class="text-lg text-gray-400">Now Playing:</p>
+        <h2 id="current-song-title" class="text-xl font-semibold mt-1"></h2>
+    </div>
+    <audio id="audio-player" class="w-full mb-6" controls>
+        Your browser does not support the audio element.
+    </audio>
+    <h2 class="text-2xl font-semibold mb-4">Playlist</h2>
+    <ul id="playlist" class="space-y-2">
+        <li th:each="musicUrl, i : ${musicUrls}"
+            class="music-item flex items-center justify-between p-3 rounded-lg transition-colors hover:bg-gray-800"
+            th:data-src="${musicUrl}"
+            th:data-title="${musicNames[i.index]}">
+            <span th:text="${musicNames[i.index]}"></span>
+        </li>
+    </ul>
+</div>
+
+<script>
+    const audioPlayer = document.getElementById('audio-player');
+    const playlistEl = document.getElementById('playlist');
+    const musicItems = document.querySelectorAll('.music-item');
+    const currentSongTitleEl = document.getElementById('current-song-title');
+    let currentSongIndex = 0;
+
+    function playSong(index) {
+        if (index < 0 || index >= musicItems.length) return;
+        currentSongIndex = index;
+        const songItem = musicItems[currentSongIndex];
+        const musicSrc = songItem.getAttribute('data-src');
+        const musicTitle = songItem.getAttribute('data-title');
+
+        audioPlayer.src = musicSrc;
+        audioPlayer.play();
+        updateUI();
+    }
+
+    function updateUI() {
+        musicItems.forEach((item, index) => {
+            item.classList.remove('text-RapaMusic-green', 'font-bold');
+            if (index === currentSongIndex) {
+                item.classList.add('text-RapaMusic-green', 'font-bold');
+                currentSongTitleEl.textContent = item.getAttribute('data-title');
+            }
+        });
+    }
+
+    audioPlayer.addEventListener('ended', () => {
+        currentSongIndex = (currentSongIndex + 1) % musicItems.length;
+        playSong(currentSongIndex);
+    });
+
+    // 로그아웃 버튼 이벤트 리스너
+    document.getElementById('logout-btn').addEventListener('click', async function(event) {
+        event.preventDefault(); // 기본 링크 이동 방지
+
+        try {
+            const response = await fetch('/user/logout', {
+                method: 'POST'
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                alert(result.message);
+                window.location.href = '/'; // 로그아웃 성공 시 랜딩 페이지로 이동
+            } else {
+                alert('로그아웃 실패: ' + result.message);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('네트워크 오류가 발생했습니다.');
+        }
+    });
+
+    // 페이지 로드 시 초기화
+    window.onload = () => {
+        if (musicItems.length > 0) {
+            musicItems.forEach((item, index) => {
+                item.addEventListener('click', () => playSong(index));
+            });
+            playSong(0);
+        }
+    }
+</script>
+</body>
+</html>
