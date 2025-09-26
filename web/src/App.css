@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+/* src/App.css */
+/*
+  프로젝트의 전역 스타일을 정의하는 파일입니다.
+  body 스타일, 폰트, 공통 변수 등을 관리합니다.
+*/
+
+/**
+ * 모든 요소의 box-sizing을 border-box로 설정하여
+ * 레이아웃 계산을 더 직관적으로 만듭니다.
+ * 이 규칙을 추가하여 입력란 레이아웃 깨짐 문제를 해결합니다.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0; /* 브라우저 기본 마진 제거 */
+    -webkit-font-smoothing: antialiased; /* 폰트 안티앨리어싱 */
+    -moz-osx-font-smoothing: grayscale;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* 커스텀 색상 변수 (필요 시 사용) */
+:root {
+  --rapamusic-green: #1ed760;
+  --background-primary: #121212;
+  --background-secondary: #1e1e1e;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

@@ -1,0 +1,103 @@
+/* src/components/LoginPage.css */
+
+/* 페이지 전체 컨테이너 */
+.login-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 1rem;
+    /* App.css의 body 스타일이 기본 배경색을 담당합니다. */
+}
+
+/* 로그인 카드 */
+.login-card {
+    width: 100%;
+    max-width: 24rem; /* 384px */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem; /* 32px */
+    border-radius: 0.5rem; /* 8px */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    text-align: center;
+    background-color: #1e1e1e;
+}
+
+/* 메인 타이틀 (Rapa Music) */
+.login-title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07)) drop-shadow(0 2px 2px rgb(0 0 0 / 0.06));
+    margin-bottom: 1.5rem; /* 24px */
+}
+
+/* 서브 타이틀 (Log in) */
+.login-subtitle {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700;
+    margin-bottom: 1.5rem; /* 24px */
+}
+
+/* 로그인 폼 */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* 16px, space-y-4 대체 */
+}
+
+/* 닉네임, 비밀번호 입력 필드 */
+.login-input {
+    width: 100%;
+    padding: 0.75rem 1rem; /* 12px 16px */
+    border-radius: 0.375rem; /* 6px */
+    background-color: #374151; /* gray-700 */
+    color: #ffffff;
+    border: 2px solid transparent; /* 포커스 시 레이아웃 변경 방지 */
+    transition: box-shadow 0.15s ease-in-out;
+}
+
+.login-input::placeholder {
+    color: #9ca3af; /* gray-400 */
+}
+
+.login-input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #1ed760; /* focus:ring-2 */
+}
+
+/* 로그인 버튼 */
+.login-button {
+    width: 100%;
+    padding: 0.75rem 0; /* 12px */
+    background-color: #1ed760;
+    color: #000000;
+    font-weight: 700;
+    border: none;
+    border-radius: 9999px; /* rounded-full */
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: rgba(30, 215, 96, 0.8); /* bg-opacity-80 */
+}
+
+/* 회원가입 안내 문구 */
+.signup-prompt {
+    margin-top: 1rem; /* 16px */
+    color: #9ca3af; /* gray-400 */
+    font-size: 0.875rem; /* 14px */
+}
+
+/* 회원가입 링크 */
+.signup-link {
+    color: #1ed760;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}

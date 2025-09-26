@@ -20,6 +20,7 @@ public class S3Service {
     @Value("${cloud.aws.s3.bucket}")
     private String bucket;
 
+    // 음악 URL 리스트
     public List<String> getMusicFiles() {
         ListObjectsV2Result result = s3Client.listObjectsV2(bucket);
         return result.getObjectSummaries().stream()
