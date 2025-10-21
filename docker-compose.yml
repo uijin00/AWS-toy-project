@@ -1,0 +1,32 @@
+services:
+  rapamusic-web:
+    build: ./web
+    ports:
+    - '3000:3000'
+    networks:
+    - rapamusic-net
+
+  rapamusic-was:
+    build: ./was/demo
+    ports:
+    - '8080:8080'
+    networks:
+    - rapamusic-net
+    depends_on:
+      rapamusic-db:
+        condition: service_healthy
+
+  rapamusic-db:
+    build: ./db
+    networks:
+    - rapamusic-net
+    healthcheck: 
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+
+networks:
+  rapamusic-net:
