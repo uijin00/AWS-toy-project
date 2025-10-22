@@ -9,7 +9,7 @@ services:
         constraints: [node.labels.role == web]
 
   rapamusic-was:
-    image: 172.16.101.10/dockertoy/was:2
+    image: 172.16.101.10/dockertoy/was:1
     ports:
     - '8080:8080'
     deploy:
