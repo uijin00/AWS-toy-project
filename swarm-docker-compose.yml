@@ -1,0 +1,36 @@
+services:
+  rapamusic-web:
+    image: 172.16.101.10/dockertoy/web:1
+    ports:
+    - '3000:3000'
+    deploy:
+      replicas: 2
+      placement:
+        constraints: [node.labels.role == web]
+    networks:
+    - rapamusic-net
+
+  rapamusic-was:
+    image: 172.16.101.10/dockertoy/was:2
+    ports:
+    - '8080:8080'
+    deploy:
+      replicas: 2
+      placement:
+        constraints: [node.labels.role == was]
+    networks:
+    - rapamusic-net
+
+  rapamusic-db:
+    image: 172.16.101.10/dockertoy/db:1
+    ports:
+    - '33306:3306'
+    deploy:
+      placement:
+        constraints: [node.labels.role == db]
+    networks:
+    - rapamusic-net
+
+networks:
+  rapamusic-net:
+    external: true
