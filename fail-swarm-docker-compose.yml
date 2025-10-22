@@ -19,8 +19,6 @@ services:
 
   rapamusic-db:
     image: 172.16.101.10/dockertoy/db:1
-    ports:
-    - '33306:3306'
     deploy:
       placement:
         constraints: [node.labels.role == db]
