@@ -1,11 +1,11 @@
 # AWS-toy-project
 AWS Cloud School 11기 토이프로젝트
 
-## Was 
+## Web 
 1. npm install
 2. npm start
 
-## Web
+## Was
 java-17
 
 1. ./gradlew build -x test
@@ -16,7 +16,7 @@ demo/src/main/resource/application.properties 파일 필요
 
 	spring.application.name=demo
 
-	spring.datasource.url=jdbc:mysql://localhost:3306/<db 이름>
+	spring.datasource.url=jdbc:mysql://<db 주소>:3306/<db 이름>
 	spring.datasource.username=<username>
 	spring.datasource.password=<password>
 
@@ -31,3 +31,9 @@ demo/src/main/resource/application.properties 파일 필요
 	cloud.aws.region.static=ap-northeast-2
 	cloud.aws.stack.auto=false
 	cloud.aws.s3.bucket=<Bucker 이름>
+
+## DB
+mysql:8
+
+
+
