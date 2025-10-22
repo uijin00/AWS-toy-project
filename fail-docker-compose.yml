@@ -1,0 +1,24 @@
+services:
+  rapamusic-web:
+    build: ./web
+    ports:
+    - '3000:3000'
+    networks:
+    - rapamusic-net
+
+  rapamusic-was:
+    build: ./was/demo
+    ports:
+    - '8080:8080'
+    networks:
+    - rapamusic-net
+    depends_on:
+    - rapamusic-db
+
+  rapamusic-db:
+    build: ./db
+    networks:
+    - rapamusic-net
+
+networks:
+  rapamusic-net:
