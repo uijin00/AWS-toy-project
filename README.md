@@ -5,6 +5,8 @@ AWS Cloud School 11기 토이프로젝트
 1. npm install
 2. npm start
 
+.env.development 파일 내 ip 수정 필요
+
 ## Was
 java-17
 
@@ -33,8 +35,7 @@ demo/src/main/resource/application.properties 파일 필요
 	cloud.aws.s3.bucket=<Bucker 이름>
 
 ### 주의할 점!! 
-Dockerfile 구조 상 AWS Key들도 같이 이미지화 하기 때문에 
-이미지를 public한 공간에는 두지 말 것!!!
+Dockerfile 구조 상 AWS Key들도 같이 이미지화 하기 때문에 이미지를 public한 공간에는 두지 말 것!!!
 
 
 ## DB
